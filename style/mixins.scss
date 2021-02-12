@@ -1,0 +1,166 @@
+@mixin media($breakpoint)
+{
+  @if map-has-key($breakpoints, $breakpoint)
+  {
+    @media (max-width: #{map-get($breakpoints, $breakpoint)})
+    {
+      @content;
+    }
+  } @else
+  {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin media_min($breakpoint)
+{
+  @if map-has-key($breakpoints, $breakpoint)
+  {
+    @media (min-width: #{map-get($breakpoints, $breakpoint)})
+    {
+      @content;
+    }
+  } @else
+  {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+
+@mixin media_range($breakpoint, $breakpoint2)
+{
+  @if map-has-key($breakpoints, $breakpoint)
+  {
+    @media (max-width: #{map-get($breakpoints, $breakpoint2)}) and (min-width: #{map-get($breakpoints, $breakpoint)})
+    {
+      @content;
+    }
+  } @else
+  {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+
+@mixin clear
+{
+  &:after
+  {
+    content: '';
+    clear: both;
+    display: table;
+  }
+}
+
+@mixin wrapper
+{
+  padding-left: 60px;
+  padding-right: 60px;
+
+  @include media(xl)
+  {
+    &
+    {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+
+  @include media(lg)
+  {
+    &
+    {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+
+
+@mixin wysiwyg
+{
+  & strong,
+  & b
+  {
+    font-weight: 700;
+  }
+
+  & em,
+  & i
+  {
+    font-style: italic;
+  }
+
+  & blockquote
+  {
+    padding: 60px 80px 40px;
+    position: relative;
+  }
+  & blockquote p
+  {
+  }
+
+  & blockquote:before
+  {
+    position: absolute;
+    bottom: 0;
+    content: "“";
+    font-size: 240px;
+    color: rgba(0, 0, 0, 0.1);
+    font-family: serif;
+    font-weight: 700;
+    left: 30px;
+
+  }
+
+  & blockquote::after
+  {
+    content: "";
+    top: 30px;
+    left: 50%;
+    margin-left: -100px;
+    position: absolute;
+    border-bottom: 3px solid color(mediumDark);
+    height: 3px;
+    width: 200px;
+  }
+
+  p
+  {
+    margin-bottom: 30px;
+  }
+
+  ul
+  {
+    list-style: disc;
+    margin-bottom: 30px;
+    margin-left: 30px;
+
+    li
+    {
+      margin-bottom: 15px;
+    }
+  }
+
+  ol
+  {
+    list-style: decimal;
+    margin-bottom: 30px;
+    margin-left: 30px;
+
+    li
+    {
+      margin-bottom: 15px;
+    }
+  }
+
+  img
+  {
+    width: auto;
+  }
+}
+
