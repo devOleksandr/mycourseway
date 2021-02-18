@@ -5,6 +5,9 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 15px;
   color: $main-font-color;
+  @include media(xs){
+    font-size: 14px;
+  }
 }
 
 
@@ -13,14 +16,135 @@ body {
   width: 100%;
   background: url("../img/header/header-bg.png") no-repeat;
   background-size: cover;
+  //mobile nav
+  .mobile-nav{
+    position: fixed;
+    width: 100%;
+    z-index: 900;
+    display: none;
+    top: 0;
+    @include media(sm){
+      display: block;
+    }
+    &__header{
+      width: 100%;
+      background: rgba(118, 105, 81, 0.76);
+      padding: 10px 15px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      display: -webkit-flex;
+      -webkit-align-items: center;
+      -webkit-justify-content: space-between;
+    }
+    &__logo{
+      font-size: 21px;
+      color: #F3F3F3;
+      text-decoration: none;
+      font-weight: 200;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    &__record{
+      border: 2px solid #c39f76;
+      color: #c39f76;
+      text-decoration: none;
+      padding: 11px 20px;
+      font-weight: 500;
+    }
+    &__btn{
+      cursor: pointer;
+      z-index: 998;
+      width: 40px;
+      height: 38px;
+      margin-left: 30px;
+      display: block;
 
+      span{
+        width: 70%;
+        height: 2px;
+        background: #ffffff;
+        display: block;
+        margin: 8px 6px;
+      }
+    }
+
+    .mobile-menu.active{
+      display: block;
+      transition: 2s;
+      animation: view-menu .2s linear;
+    }
+
+    @keyframes view-menu {
+      from{
+        opacity: 0;
+      }
+      to{
+        opacity: 1;
+
+      }
+    }
+    .mobile-menu{
+      display: none;
+      background: rgba(118, 105, 81, 0.93);
+      padding-top: 25px;
+      &__list{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-bottom: 2px solid #927556;
+      }
+      &__item{
+        width: 100%;
+      }
+      &__link{
+        text-decoration: none;
+        text-transform: uppercase;
+        color: white;
+        font-size: 20px;
+        width: 100%;
+        display: block;
+        padding: 12px 0;
+        text-align: center;
+        font-weight: 300;
+        outline: none;
+
+      }
+    }
+
+    .mobile-contact{
+      padding: 20px 30px;
+      &__social{
+        margin-left: 14px;
+        img{
+          width: 36px;
+        }
+      }
+      &__item{
+        margin: 15px 0;
+        display: flex;
+      }
+      &__link{
+        text-decoration: none;
+        color: #ffffff;
+        margin-left: 10px;
+        outline: none;
+      }
+    }
+  }
   &__inner {
-    max-width: 1170px;
+    max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    padding: 53px 30px;
+    padding: 53px 15px;
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
+    @include media(sm){
+      display: none;
+    }
+
   }
 
   &__logo {
@@ -31,6 +155,12 @@ body {
     text-transform: uppercase;
     padding-right: 74px;
     letter-spacing: 2px;
+    @include media(md){
+      font-size: 38px;
+    }
+    @include media(sm){
+      display: none;
+    }
   }
 
   &__nav {
@@ -43,16 +173,16 @@ body {
       display: flex;
       justify-content: space-between;
 
-      &__item {
-
-      }
-
       &__link {
         text-decoration: none;
         color: $white;
         font-size: 25px;
         font-weight: 200;
         padding-bottom: 11px;
+
+        @include media(md){
+          font-size: 18px;
+        }
 
         &:hover {
           border-bottom: 1px solid white;
@@ -63,6 +193,9 @@ body {
 }
 
 .banner {
+  @include media(sm){
+    padding-top: 110px;
+  }
   &__inner {
     @include container;
   }
@@ -75,6 +208,15 @@ body {
     letter-spacing: 1px;
     font-weight: 600;
     margin-right: 11px;
+    @include media(lg){
+      text-align: center;
+      font-size: 48px;
+      margin-right: unset;
+    }
+    @include media(xs){
+      font-size: 36px;
+      line-height: 1.3;
+    }
 
   }
 
@@ -85,6 +227,15 @@ body {
     font-size: 36px;
     color: $white;
     text-transform: uppercase;
+    @include media(lg){
+      text-align: center;
+      font-size: 28px;
+      padding-right: unset;
+      padding-top: 40px;
+    }
+    @include media(xs){
+      font-size: 20px;
+    }
   }
 
   &__form {
@@ -93,6 +244,10 @@ body {
     padding-right: 94px;
     margin-left: auto;
     margin-top: 46px;
+    @include media(lg){
+      margin: 30px auto;
+      padding: unset;
+    }
   }
 
   &__input {
@@ -103,11 +258,25 @@ body {
     color: #999999;
     font-size: 22px;
     outline: none;
+    @include media(lg){
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    @include media(xs){
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
 
 
     &::placeholder {
       color: #999999;
       font-size: 22px;
+      @include media(lg){
+        font-size: 18px;
+      }
+      @include media(xs){
+        font-size: 16px;
+      }
     }
   }
 
@@ -119,6 +288,13 @@ body {
     padding: 18px 0;
     background: $red;
     border: 1px solid white;
+    @include media(lg){
+      font-size: 18px;
+    }
+    @include media(xs){
+      font-size: 16px;
+      padding: 14px 0
+    }
   }
 }
 
@@ -135,11 +311,20 @@ body {
   &__list {
     display: flex;
     justify-content: space-between;
+    @include media(xs){
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   &__column {
     max-width: 346px;
     width: 100%;
+  }
+  &__column:nth-child(2) {
+    @include media(xs){
+      display: none;
+    }
   }
 
   &__item {
@@ -148,6 +333,10 @@ body {
     align-items: center;
     margin-bottom: 34px;
     min-height: 213px;
+    @include media(xs){
+      min-height: unset;
+
+    }
   }
 
   &__item--logo {
@@ -162,6 +351,10 @@ body {
     display: block;
     font-size: 30px;
     margin-top: 22px;
+    text-align: center;
+    @include media(xs){
+      font-size: 20px;
+    }
   }
 
   &__text {
@@ -189,6 +382,9 @@ body {
   &__tagline {
     font-size: 25px;
     text-align: center;
+    @include media(xs){
+      font-size: 16px;
+    }
   }
 
   &__list {
@@ -196,6 +392,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    @include media(xs){
+      margin-top: 20px;
+    }
 
   }
 
@@ -205,14 +404,31 @@ body {
     background: #E8E8E8;
     margin-bottom: 18px;
     display: flex;
+    @include media(lg){
+      max-width: 80%;
+      margin: 20px auto;
+    }
+    @include media(sm){
+      flex-direction: column;
+      align-items: center;
+    }
 
     > div {
       padding: 0 22px;
+      @include media(sm){
+        order: 2;
+      }
     }
 
     img {
       padding: 28px 28px 21px 0;
       box-sizing: border-box;
+      @include media(sm){
+        order: 1;
+        padding: 15px;
+        box-sizing: border-box;
+        max-width: 100%;
+      }
     }
   }
 
@@ -222,6 +438,9 @@ body {
     line-height: 1.5;
     display: block;
     margin-top: 6px;
+    @include media(xs){
+      font-size: 18px;
+    }
   }
 
   &__description {
@@ -230,6 +449,9 @@ body {
     margin-top: 3px;
     line-height: 1.7;
     word-spacing: -2px;
+    @include media(xs){
+      font-size: 16px;
+    }
 
   }
 
@@ -239,6 +461,9 @@ body {
     margin-top: 5px;
     display: block;
     font-size: 18px;
+    @include media(xs){
+      font-size: 16px;
+    }
     &:hover{
       color: $red;
     }
@@ -254,6 +479,9 @@ body {
     margin-left: auto;
     margin-right: 8px;
     cursor: pointer;
+    @include media(sm){
+      margin: 20px auto;
+    }
   }
 
 }
@@ -271,9 +499,18 @@ body {
     max-width: 1306px;
     position: relative;
 
+    @include media(lg){
+      padding: 0 60px;
+    }
+    @include media(xs){
+      padding: 0 15px;
+    }
+
     .swiper-button-next {
       margin-top: 10px;
-
+      @include media(lg){
+        right: 20px;
+      }
       &:after {
         content: '';
         position: absolute;
@@ -288,7 +525,9 @@ body {
 
     .swiper-button-prev {
       margin-top: 10px;
-
+      @include media(lg){
+        left: 20px;
+      }
       &:after {
         content: '';
         position: absolute;
@@ -305,20 +544,24 @@ body {
     max-width: 1110px;
     width: 100%;
 
-
   }
 
   .swiper-slide {
     display: flex;
     flex-direction: column;
     width: 25%;
-
-
+    @include media(xl){
+      width: unset;
+      align-items: center;
+    }
   }
 
   &__image {
     max-width: 257px;
     width: 100%;
+    @include media(xss){
+      max-width: 60%;
+    }
   }
 
   &__name {
@@ -327,7 +570,9 @@ body {
     text-align: center;
     padding: 24px 0;
     color: $main-font-color;
-
+    @include media(xs){
+      font-size: 18px;
+    }
     &:hover {
       color: #BA271F;
     }
@@ -338,12 +583,26 @@ body {
 .certificate {
   display: flex;
   margin-top: 21px;
+  @include media(md){
+    flex-direction: column;
+  }
+
 
   &__inner {
     max-width: 585px;
     width: 100%;
     padding: 0 30px 0 98px;
     box-sizing: border-box;
+    @include media(lg){
+      padding: 0 30px;
+    }
+    @include media(md){
+      padding: 40px 30px;
+      max-width: 100%;
+    }
+    @include media(xs){
+      padding: 40px 15px;
+    }
   }
 
   &__img {
@@ -352,11 +611,18 @@ body {
     background: url("../img/certificate/education.png");
     background-size: cover;
     background-position-y: 62%;
+    @include media(md){
+      width: 100%;
+      min-height: 250px;
+    }
   }
 
   &__info {
     width: 50%;
     background: #A99473;
+    @include media(md){
+      width: 100%;
+    }
 
   }
 
@@ -366,6 +632,18 @@ body {
     text-align: end;
     word-spacing: -5px;
     margin-top: 41px;
+    @include media(lg){
+      text-align: center;
+    }
+    @include media(md){
+      margin-top: 0;
+      font-size: 38px;
+      letter-spacing: 1px;
+      word-spacing: unset;
+    }
+    @include media(xs){
+      font-size: 28px;
+    }
   }
 
   &__text {
@@ -374,9 +652,11 @@ body {
     max-width: 350px;
     word-spacing: -1px;
     width: 100%;
-    font-size: 15px;
     line-height: 1.8;
     font-family: 'Lato', sans-serif;
+    @include media(lg){
+      max-width: 100%;
+    }
 
   }
 
@@ -390,6 +670,17 @@ body {
     margin-top: 43px;
     width: fit-content;
     cursor: pointer;
+    @include media(lg){
+      margin: 43px auto 0 auto;
+    }
+    @include media(md){
+      font-size: 18px;
+      padding: 15px 40px;
+    }
+    @include media(xs){
+      font-size: 16px;
+      padding: 12px 40px;
+    }
   }
 }
 
@@ -413,11 +704,20 @@ body {
   }
 
   &__item {
-    max-width: 255px;
+    max-width: 23%;
     width: 100%;
+    @include media(md){
+      max-width: 46%;
+      margin-bottom: 4%;
+    }
+    @include media(xs){
+      max-width: 100%;
+      margin-bottom: 40px;
+
+    }
 
     img {
-
+      width: 100%;
     }
   }
 
@@ -458,8 +758,11 @@ body {
 
 .registration {
   background: rgba(169, 148, 115, 0.87);
-  padding-bottom: 32px;
+  padding-bottom: 58px;
+  @include media(md){
+    padding-bottom: 40px;
 
+  }
   &__inner {
     @include container
   }
@@ -472,6 +775,12 @@ body {
     margin-right: 67px;
     letter-spacing: -1px;
     word-spacing: 17px;
+    @include media(md){
+      margin-right: unset;
+      letter-spacing: 1px;
+      word-spacing: unset;
+      padding: 40px 0 0 0;
+    }
   }
 
   &__tagline {
@@ -480,6 +789,14 @@ body {
     text-align: center;
     margin-top: 13px;
     margin-right: 69px;
+    @include media(md){
+      margin-right: unset;
+      font-size: 20px;
+    }
+    @include media(xs){
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
   }
 
   &__form {
@@ -488,19 +805,39 @@ body {
     margin: 0 auto;
     padding-top: 26px;
     padding-right: 19px;
+    @include media(md){
+      padding-right: unset;
+
+    }
   }
 
   &__input {
     width: 100%;
-    padding: 15px 33px;
+    padding: 17px 33px;
     box-sizing: border-box;
     margin-bottom: 31px;
     color: #ABABAB;
     font-size: 25px;
+    border: none;
+    @include media(md){
+      padding: 15px 16px;
+      font-size: 18px;
+    }
+    @include media(xs){
+      padding: 15px 16px;
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
     &::placeholder {
       font-size: 25px;
       color: #ABABAB;
       font-family: 'Lato', sans-serif;
+      @include media(md){
+        font-size: 18px;
+      }
+      @include media(xs){
+        font-size: 16px;
+      }
     }
   }
 
@@ -513,21 +850,38 @@ body {
     margin: 0 auto;
     padding: 18px 41px;
     margin-left: 37%;
+    @include media(md){
+      margin-left: auto;
+      font-size: 18px;
+      padding: 15px 40px;
+    }
+    @include media(xs){
+      font-size: 16px;
+      padding: 12px 40px;
+    }
   }
 
 }
 
 .footer {
-
-  padding: 84px 30px;
+  padding: 57px 30px;
   box-sizing: border-box;
   background: #A99473;
+  @include media(xs){
+    padding: 50px 15px
+  }
 
   p {
     text-align: center;
     color: $white;
     font-size: 25px;
     margin-bottom: 18px;
+    @include media(md){
+      font-size: 18px;
+    }
+    @include media(xs){
+      font-size: 16px;
+    }
 
     a {
       text-decoration: none;
@@ -543,6 +897,9 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 37px;
+    @include media(xs){
+      margin-top: 25px;
+    }
 
     &__link {
       margin: 0 24px;
@@ -552,10 +909,16 @@ body {
       height: 48px;
       background-size: contain;
       transition: .3s;
+      @include media(md){
+        width: 32px;
+        height: 32px;
+        margin: 0 15px;
+      }
     }
 
     &__link-twitter {
       background: url('../img/footer/social/twitter.png') no-repeat;
+      background-size: contain;
 
       &:hover {
         background: url('../img/footer/social/twitter-red.png') no-repeat;
@@ -565,6 +928,8 @@ body {
 
     &__link-facebook {
       background: url('../img/footer/social/facebook.png') no-repeat;
+      background-size: contain;
+
 
       &:hover {
         background: url('../img/footer/social/facebook-red.png') no-repeat;
@@ -575,6 +940,8 @@ body {
 
     &__link-gp {
       background: url('../img/footer/social/google-plus.png') no-repeat;
+      background-size: contain;
+
 
       &:hover {
         background: url('../img/footer/social/google-plus-red.png') no-repeat;

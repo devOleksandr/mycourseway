@@ -5,6 +5,10 @@
   max-width: 1170px;
   width: 100%;
   margin: 0 auto;
+  @include media(xs){
+    padding: 0 15px;
+
+  }
 }
 
 @mixin headline {
@@ -12,6 +16,12 @@
   text-align: center;
   padding: 40px 0 30px 0;
   letter-spacing: 1px;
+  @include media(md){
+    font-size: 38px;
+  }
+  @include media(xs){
+    font-size: 28px;
+  }
 }
 
 
